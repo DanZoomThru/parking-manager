@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1 class="text-center">Parking Manager</h1>
+      <table class="table">
+        <thead class="thead-default">
+          <tr>
+            <% @parkings.first.attributes.each do |attr_name, attr_value| %>
+              <th><%= attr_name[0..4].capitalize %></th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% @parkings.each do |parking| %>
+            <tr>
+              <% parking.attributes.each do |attr_name, attr_value| %>
+                <td><%= attr_value %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
