@@ -2,22 +2,7 @@
   <div class="row">
     <div class="col-xs-12">
       <h1 class="text-center">Edit <%= @parking.name %>'s parking</h1>
-      <%= simple_form_for(@parking) do |f| %>
-        <%= f.error_notification %>
-
-        <%= f.input :name %>
-        <%= f.input :address %>
-        <%= f.input :available, collection: [true, false] %>
-        <%= f.input :has_camera, collection: [true, false] %>
-        <%= f.input :has_watchman, collection: [true, false] %>
-        <%= f.input :city %>
-        <%= f.input :zip_code %>
-        <%= f.input :main_picture %>
-        <%= f.input :price_month %>
-
-        <%= f.button :submit, class: "btn btn-success" %>
-        <%= link_to "Back Home", root_path, class: "btn btn-danger" %>
-      <% end %>
+      <%= render 'form' %>
     </div>
   </div>
 </div>
