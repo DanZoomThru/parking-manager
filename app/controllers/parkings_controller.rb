@@ -22,6 +22,19 @@ class ParkingsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    @parking.update(parking_params)
+    new_district = @parking.zip_code[0..1] == "75" ? @parking.zip_code[3..4] : "0"
+    gps = Geokit::Geocoders::GoogleGeocoder.geocode(@parking.address + ", " + @parking.city)
+    new_lat = gps.ll.split(',').first.to_f
+    new_lng = gps.ll.split(',').last.to_f
+    @parking.update(lat: new_lat, lng: new_lng, district: new_district)
+    redirect_to "/"
+  end
+
   def destroy
     @parking.destroy
     redirect_to "/"

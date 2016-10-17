@@ -17,13 +17,13 @@
               <% parking.attributes.each do |attr_name, attr_value| %>
                 <td>
                 <% if attr_name == "main_picture" %>
-                  <%= image_tag attr_value, class: "width-200" %>
+                  <%= image_tag attr_value, class: "width-100" %>
                 <% else %>
                   <%= attr_value %>
                 <% end %>
                 </td>
               <% end %>
-              <td><%= link_to "Delete", parking_path(parking), method: :delete, data: { confirm: "Are you sure?" } %></td>
+              <td><%= link_to "Delete", parking_path(parking), method: :delete, data: { confirm: "Are you sure?" } %><br><%= link_to "Edit", edit_parking_path(parking) %></td>
             </tr>
           <% end %>
         </tbody>
