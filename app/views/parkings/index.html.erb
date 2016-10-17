@@ -3,11 +3,12 @@
     <div class="col-xs-12">
       <h1 class="text-center">Parking Manager</h1>
       <%= link_to "+ Add a new parking", new_parking_path, class: "btn btn-primary" %>
+      <%= link_to "See the map", map_path, class: "btn btn-danger" %>
       <table class="table">
         <thead class="thead-default">
           <tr>
             <% @parkings.first.attributes.each do |attr_name, attr_value| %>
-              <th><%= attr_name[0..4].capitalize %></th>
+              <th><%= attr_name.capitalize %></th>
             <% end %>
           </tr>
         </thead>

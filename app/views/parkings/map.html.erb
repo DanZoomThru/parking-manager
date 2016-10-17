@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <h1>Map of all the parkings</h1>
+      <div><%= link_to "Back Home", root_path, class: "btn btn-danger" %></div>
+      <br>
+      <div class="col-xs-12 col-md-8" id="map"></div>
+    </div>
+  </div>
+</div>
+
+<% content_for(:after_js) do %>
+  <script>
+  $(document).ready(function () {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: { lat: 48.866667, lng: 2.333333 },
+      zoom: 12
+    });
+    <% @parkings.each do |parking| %>
+      var marker = new google.maps.Marker({
+        map: map,
+        position: { lat: <%= parking.lat.to_f %>, lng: <%= parking.lng.to_f %> },
+        contentString: '<strong><%= parking.name %></strong><br /><%= parking.address %>, <%= parking.city %><br /><%= link_to "Delete", parking_path(parking), method: :delete, data: { confirm: "Are you sure?" } %> / <%= link_to "Edit", edit_parking_path(parking) %>'
+      });
+
+      var infowindow = new google.maps.InfoWindow({});
+
+      marker.addListener('click', function() {
+        infowindow.setContent(this.contentString);
+        infowindow.open(map, this);
+      });
+    <% end %>
+  });
+  </script>
+<% end %>

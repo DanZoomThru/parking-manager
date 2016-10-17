@@ -1,8 +1,8 @@
 class ParkingsController < ApplicationController
+  before_action :set_parkings, only: [:index, :map]
   before_action :set_parking, only: [:edit, :update, :destroy]
 
   def index
-    @parkings = Parking.all
   end
 
   def new
@@ -40,6 +40,9 @@ class ParkingsController < ApplicationController
     redirect_to "/"
   end
 
+  def map
+  end
+
   private
 
   def parking_params
@@ -48,6 +51,10 @@ class ParkingsController < ApplicationController
 
   def set_parking
     @parking = Parking.find(params[:id])
+  end
+
+  def set_parkings
+    @parkings = Parking.all
   end
 
 end
